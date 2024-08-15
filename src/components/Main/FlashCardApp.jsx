@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Client, Account } from 'appwrite';
 
 const FlashCardApp = () => {
   const [title, setTitle] = useState('');
@@ -24,6 +25,12 @@ const navigate = useNavigate();
       setDefinition('');
     }
   };
+  
+  const client = new Client()
+        .setEndpoint(import.meta.env.VITE_APPWRITE_URL)
+        .setProject(import.meta.env.VITE_APPWRITE_PROJECT_ID);
+
+    const account = new Account(client);
 
   const handleAddDefinition = () => {
     if (definition && editIndex !== null) {
@@ -48,18 +55,25 @@ const navigate = useNavigate();
     setDefinition('');
   };
 
-  const handleLogout = () => {
-    // Implement logout logic here
-    console.log('Logout clicked');
-  };
+  
+  const handleLogout = async () => {
+    try {
+        await account.deleteSession('current');
+        console.log('Logged out successfully');
+        navigate('/login');
+    } catch (error) {
+        console.error('Logout failed', error);
+    }
+};
 
   return (
     <div className="min-h-screen bg-gray-900">
       {/* Header */}
       <header className="bg-gray-800 py-4 px-8 flex justify-between items-center">
         <h1 className="text-2xl font-bold text-purple-500">BrainFlash</h1>
+        <h1 className='text-3xl text-white'>Welcome! User</h1>
         <button
-          onClick={()=>navigate('/')}
+          onClick={handleLogout}
           className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-800"
         >
           Logout

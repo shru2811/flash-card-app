@@ -1,19 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-
+import { Client, Account } from 'appwrite';
 
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Login submitted:', { email, password });
+  const client = new Client()
+    .setEndpoint(import.meta.env.VITE_APPWRITE_URL)
+    .setProject(import.meta.env.VITE_APPWRITE_PROJECT_ID);
+
+  const account = new Account(client);
+
+  useEffect(() => {
+    checkSession();
+  }, []);
+
+  const checkSession = async () => {
+    try {
+      const session = await account.get();
+      if (session) {
+        console.log('Active session found');
+        navigate('/main');
+      }
+    } catch (error) {
+      console.log('No active session');
+    }
   };
 
-  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+
+    try {
+      await account.createEmailPasswordSession(email, password);
+      console.log('Login successful');
+      navigate('/main');
+    } catch (error) {
+      console.error('Login error:', error);
+      setError('Login failed. Please check your credentials.');
+    }
+  };
   return (
     <div className="min-h-screen bg-gray-900 flex items-center justify-center">
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">

@@ -1,16 +1,34 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Client, Account , ID} from 'appwrite';
+
 
 
 const Register = () => {
-  const [username, setUsername] = useState('');
+  // const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  // const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Registration submitted:', { username, email, password, confirmPassword });
+    const client = new Client()
+    .setEndpoint(import.meta.env.VITE_APPWRITE_URL) // Your API Endpoint
+    .setProject(import.meta.env.VITE_APPWRITE_PROJECT_ID);                 // Your project ID
+
+const account = new Account(client);
+
+await account.create(
+    ID.unique(), 
+    email, 
+    password
+);
+await account.createEmailPasswordSession(
+  email, 
+  password
+);
+    console.log('Registration & login submitted:', { email, password });
+    navigate('/main')
   };
 
   const navigate = useNavigate();
@@ -21,7 +39,7 @@ const Register = () => {
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
         <h1 className="text-2xl font-bold text-purple-500 mb-6">BrainFlash Register</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
+          {/* <div>
             <input
               type="text"
               placeholder="Username"
@@ -30,7 +48,7 @@ const Register = () => {
               required
               className="w-full px-3 py-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
-          </div>
+          </div> */}
           <div>
             <input
               type="email"
@@ -51,7 +69,7 @@ const Register = () => {
               className="w-full px-3 py-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
           </div>
-          <div>
+          {/* <div>
             <input
               type="password"
               placeholder="Confirm Password"
@@ -60,7 +78,7 @@ const Register = () => {
               required
               className="w-full px-3 py-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
-          </div>
+          </div> */}
           <div className="flex justify-between">
             <button
               type="submit"
