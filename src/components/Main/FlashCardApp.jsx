@@ -8,6 +8,7 @@ const FlashCardApp = () => {
   const [editIndex, setEditIndex] = useState(null);
   const [flashCard, setFlashCard] = useState({});
   const [userId, setUserId] = useState(null);
+  const [loading, setLoading] = useState(false); // New loading state
   const navigate = useNavigate();
 
   // Initialize Appwrite
@@ -35,26 +36,26 @@ const FlashCardApp = () => {
     }
   };
 
-  
-
   // Function to load flashcard data
   const loadFlashCardData = async () => {
     if (!userId) return;
-    
+
     try {
       const response = await databases.listDocuments(databaseId, collectionId, [
-        Query.equal("userId", userId)
+        Query.equal("userId", userId),
       ]);
       const loadedFlashCards = response.documents.reduce((acc, doc) => {
-        acc[doc.$id] = { 
-          title: doc.Title, 
-          definitions: Array.isArray(doc.Definitions) ? doc.Definitions : [doc.Definitions] 
+        acc[doc.$id] = {
+          title: doc.Title,
+          definitions: Array.isArray(doc.Definitions)
+            ? doc.Definitions
+            : [doc.Definitions],
         };
         return acc;
       }, {});
       setFlashCard(loadedFlashCards);
     } catch (error) {
-      console.error('Failed to load flashcard data', error);
+      console.error("Failed to load flashcard data", error);
     }
   };
 
@@ -81,20 +82,22 @@ const FlashCardApp = () => {
   }
 
   const deleteCard = async (cardId) => {
-    const isConfirmed = window.confirm("Are you sure you want to delete this card?");
+    const isConfirmed = window.confirm(
+      "Are you sure you want to delete this card?"
+    );
     if (!isConfirmed) return;
-  
+
     try {
       await databases.deleteDocument(databaseId, collectionId, cardId);
-      setFlashCard(prevCards => {
+      setFlashCard((prevCards) => {
         const updatedCards = { ...prevCards };
         delete updatedCards[cardId];
         return updatedCards;
       });
-      console.log('Card deleted successfully');
+      console.log("Card deleted successfully");
     } catch (error) {
-      console.error('Failed to delete card', error);
-      alert('Failed to delete card. Please try again.');
+      console.error("Failed to delete card", error);
+      alert("Failed to delete card. Please try again.");
     }
   };
 
@@ -163,12 +166,15 @@ const FlashCardApp = () => {
   };
 
   const handleLogout = async () => {
+    setLoading(true); // Set loading to true when logging out
     try {
       await account.deleteSession("current");
       console.log("Logged out successfully");
       navigate("/login");
     } catch (error) {
       console.error("Logout failed", error);
+    } finally {
+      setLoading(false); // Set loading to false after logout attempt
     }
   };
 
@@ -181,8 +187,32 @@ const FlashCardApp = () => {
         <button
           onClick={handleLogout}
           className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-800"
+          disabled={loading} // Disable button while loading
         >
-          Logout
+          {loading ? (
+            <svg
+              className="animate-spin h-5 w-5 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              ></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8v8a4 4 0 00-4 4H4z"
+              ></path>
+            </svg>
+          ) : (
+            "Logout"
+          )}
         </button>
       </header>
 
