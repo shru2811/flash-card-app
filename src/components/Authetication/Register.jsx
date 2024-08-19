@@ -18,7 +18,8 @@ const Register = () => {
 
 const account = new Account(client);
 
-await account.create(
+try{
+  await account.create(
     ID.unique(), 
     email, 
     password
@@ -29,6 +30,9 @@ await account.createEmailPasswordSession(
 );
     console.log('Registration & login submitted:', { email, password });
     navigate('/main')
+}catch(error){
+  console.log(error)
+}
   };
 
   const navigate = useNavigate();

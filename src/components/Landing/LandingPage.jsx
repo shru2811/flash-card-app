@@ -36,7 +36,7 @@ const LandingPage = () => {
             Create multi-definition flashcards for any topic and boost your learning potential.
             </p>
             <div className="space-x-4">
-              <button onClick={() => navigate('/main')} className="bg-purple-600 text-white px-6 py-3 rounded-md hover:bg-purple-700">
+              <button onClick={() => navigate('/register')} className="bg-purple-600 text-white px-6 py-3 rounded-md hover:bg-purple-700">
                 Get Started
               </button>
               <a href="#how-it-works" className="border border-purple-600 text-purple-600 px-6 py-3 rounded-md hover:bg-purple-600 hover:text-white">

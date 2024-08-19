@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Client, Account } from 'appwrite';
-
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Client, Account } from "appwrite";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const client = new Client()
@@ -23,31 +22,33 @@ const Login = () => {
     try {
       const session = await account.get();
       if (session) {
-        console.log('Active session found');
-        navigate('/main');
+        console.log("Active session found");
+        navigate("/main");
       }
     } catch (error) {
-      console.log('No active session');
+      console.log(error);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
 
     try {
       await account.createEmailPasswordSession(email, password);
-      console.log('Login successful');
-      navigate('/main');
+      console.log("Login successful");
+      navigate("/main");
     } catch (error) {
-      console.error('Login error:', error);
-      setError('Login failed. Please check your credentials.');
+      console.error("Login error:", error);
+      setError("Login failed. Please check your credentials.");
     }
   };
   return (
     <div className="min-h-screen bg-gray-900 flex items-center justify-center">
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h1 className="text-2xl font-bold text-purple-500 mb-6">BrainFlash Login</h1>
+        <h1 className="text-2xl font-bold text-purple-500 mb-6">
+          BrainFlash Login
+        </h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <input
@@ -78,19 +79,18 @@ const Login = () => {
             </button>
             <button
               type="submit"
-              onClick={()=>navigate('/')}
+              onClick={() => navigate("/")}
               className="px-4 py-2 border border-purple-500 text-purple-500 rounded hover:bg-purple-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-800"
             >
               Go to Landing Page
             </button>
             <button
-            onClick={()=>navigate('/register')}
+              onClick={() => navigate("/register")}
               type="button"
               className="px-4 py-2 border border-purple-500 text-purple-500 rounded hover:bg-purple-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-800"
             >
-              New User? 
+              New User?
             </button>
-            
           </div>
         </form>
       </div>
