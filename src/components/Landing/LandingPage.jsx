@@ -9,12 +9,6 @@ const LandingPage = () => {
     <div className="bg-gray-900 text-white min-h-screen">
       <header className="p-4 flex justify-between items-center">
         <div className="text-xl font-bold">🧠 BrainFlash</div>
-        {/* <nav className="space-x-4">
-          <a  className="hover:text-purple-400">How it works</a>
-          <a href="#about" className="hover:text-purple-400">About</a>
-          <a href="#price" className="hover:text-purple-400">Price</a>
-          <a href="#features" className="hover:text-purple-400">Features</a>
-        </nav> */}
         <div className="flex gap-4">
         <button  onClick={() => navigate('/register')} className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700">
           REGISTER
@@ -26,9 +20,9 @@ const LandingPage = () => {
       </header>
 
       <main className="container mx-auto px-4">
-        <section className="flex justify-between items-center py-16">
+        <section className="flex gap-8 flex-col-reverse md:flex-row justify-between items-center py-16">
           <div className="w-1/2">
-            <h1 className="text-4xl font-bold mb-4">
+            <h1 className="md:text-4xl font-bold mb-4">
               <span className="text-purple-500 text-6xl">BrainFlash</span> is built to help you
             </h1>
             <p className="mb-6">
@@ -54,7 +48,7 @@ const LandingPage = () => {
         </section>
         <section id="how-it-works" className="py-16">
           <h2 className="text-3xl font-bold mb-8">How it works</h2>
-          <div className="grid grid-cols-3 gap-8">
+          <div className="gap-8 flex flex-col md:flex-row px-4">
             <div className="bg-gray-800 p-6 rounded-lg">
               <Edit3 className="text-purple-500 mb-4" size={32} />
               <h3 className="text-3xl font-semibold mb-2 text-purple-500">Create a Topic</h3>
