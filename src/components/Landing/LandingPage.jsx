@@ -6,7 +6,7 @@ import image from '../../assets/landing.png'
 const LandingPage = () => {
   const navigate = useNavigate();
   return (
-    <div className="bg-gray-900 text-white min-h-screen">
+    <div className="bg-gray-900 text-white min-h-screen scroll-smooth">
       <header className="p-4 flex justify-between items-center">
         <div className="text-xl font-bold">🧠 BrainFlash</div>
         <div className="flex gap-4">
@@ -30,7 +30,7 @@ const LandingPage = () => {
             Create multi-definition flashcards for any topic and boost your learning potential.
             </p>
             <div className="space-x-4">
-              <button onClick={() => navigate('/register')} className="bg-purple-600 text-white px-6 py-3 rounded-md hover:bg-purple-700">
+              <button onClick={() => navigate('/demo')} className="bg-purple-600 text-white px-6 py-3 rounded-md hover:bg-purple-700">
                 Get Started
               </button>
               <a href="#how-it-works" className="border border-purple-600 text-purple-600 px-6 py-3 rounded-md hover:bg-purple-600 hover:text-white">

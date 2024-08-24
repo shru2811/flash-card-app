@@ -182,7 +182,7 @@ const FlashCardApp = () => {
     <div className="min-h-screen bg-gray-900">
       {/* Header */}
       <header className="bg-gray-800 py-4 px-8 flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-purple-500">BrainFlash</h1>
+        <h1 className="text-2xl font-bold text-white">🧠BrainFlash</h1>
         {/* <h1 className="text-3xl font-bold text-purple-500">Welcome! User</h1> */}
         <button
           onClick={handleLogout}
@@ -219,7 +219,7 @@ const FlashCardApp = () => {
       {/* Main Content */}
       <div className="p-8">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-purple-500 mb-8">
+          <h2 className="text-3xl font-bold text-purple-200 mb-8">
             Card Creator
           </h2>
 

@@ -31,9 +31,10 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+    <div className="min-h-screen bg-gray-900 flex items-center justify-center flex-col">
+      <h1 className="text-5xl font-bold text-white my-3">🧠BrainFlash</h1>
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h1 className="text-2xl font-bold text-purple-500 mb-6">BrainFlash Register</h1>
+        <h1 className="text-3xl font-bold text-white mb-4 text-center"> Register</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <input
@@ -90,13 +91,13 @@ const Register = () => {
               onClick={() => navigate('/')}
               className="px-4 py-2 border border-purple-500 text-purple-500 rounded hover:bg-purple-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-800"
             >
-              Go to Landing Page
+              Home
             </button>
             <button
               onClick={() => navigate('/login')}
               className="px-4 py-2 border border-purple-500 text-purple-500 rounded hover:bg-purple-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-800"
             >
-              Login Page
+              Existing User?
             </button>
           </div>
         </form>
