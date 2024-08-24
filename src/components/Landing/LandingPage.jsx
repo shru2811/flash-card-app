@@ -10,11 +10,11 @@ const LandingPage = () => {
       <header className="p-4 flex justify-between items-center">
         <div className="text-xl font-bold">🧠 BrainFlash</div>
         <div className="flex gap-4">
-        <button  onClick={() => navigate('/register')} className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700">
-          REGISTER
+        <button  onClick={() => navigate('/register')} className="bg-purple-600 text-white *: px-2 py-1 md:px-4 md:py-2 rounded-md hover:bg-purple-700">
+          Register
         </button>
-        <button onClick={() => navigate('/login')} className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700">
-          LOGIN
+        <button onClick={() => navigate('/login')} className="bg-purple-600 text-white  px-2 py-1 md:px-4 md:py-2 rounded-md hover:bg-purple-700">
+          Login
         </button>
         </div>
       </header>
@@ -23,17 +23,17 @@ const LandingPage = () => {
         <section className="flex gap-8 flex-col-reverse md:flex-row justify-between items-center py-16">
           <div className="w-1/2">
             <h1 className="md:text-4xl font-bold mb-4">
-              <span className="text-purple-500 text-6xl">BrainFlash</span> is built to help you
+              <span className="text-purple-500 text-4xl md:text-6xl">BrainFlash</span> is built to help you
             </h1>
             <p className="mb-6">
             Organize, Learn, and Memorize Effortlessly. <br/>
             Create multi-definition flashcards for any topic and boost your learning potential.
             </p>
-            <div className="space-x-4">
-              <button onClick={() => navigate('/demo')} className="bg-purple-600 text-white px-6 py-3 rounded-md hover:bg-purple-700">
+            <div className="space-x-4 flex flex-col sm:flex-row">
+              <button onClick={() => navigate('/demo')} className="bg-purple-600 text-white px-6 py-3 rounded-md hover:bg-purple-700 mb-3">
                 Get Started
               </button>
-              <a href="#how-it-works" className="border border-purple-600 text-purple-600 px-6 py-3 rounded-md hover:bg-purple-600 hover:text-white">
+              <a href="#how-it-works" className="border border-purple-600 text-purple-600 px-6 py-3 rounded-md hover:bg-purple-600 hover:text-white text-center">
                 More
               </a>
             </div>

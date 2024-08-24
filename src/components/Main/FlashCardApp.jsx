@@ -292,6 +292,7 @@ const FlashCardApp = () => {
           </div>
         </div>
       </div>
+      
     </div>
   );
 };

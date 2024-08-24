@@ -89,17 +89,17 @@ const handleAddCard = () => {
       <header className="py-4 px-8 flex justify-between items-center">
         <h1 className="text-2xl font-bold text-white">🧠BrainFlash</h1>
         {/* <h1 className="text-sm text-white">To Save your flashcards permanently register yourself and Login</h1> */}
-        <div className="flex gap-4">
-        <button  onClick={() => navigate('/register')} className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700">
+        {/* <div className="flex gap-4 flex-col">
+        <button  onClick={() => navigate('/register')} className="bg-purple-600 text-white px-2 py-1 md:px-4 md:py-2 rounded-md hover:bg-purple-700 ">
           Register
         </button>
-        <button onClick={() => navigate('/login')} className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700">
+        <button onClick={() => navigate('/login')} className="bg-purple-600 text-white px-2 py-1 md:px-4 md:py-2 rounded-md hover:bg-purple-700">
           Login
         </button>
-        <button onClick={() => navigate('/')} className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700">
+        <button onClick={() => navigate('/')} className="bg-purple-600 text-white px-2 py-1 md:px-4 md:py-2 rounded-md hover:bg-purple-700">
           Home
         </button>
-        </div>
+        </div> */}
       </header>
 
       {/* Main Content */}
@@ -173,6 +173,17 @@ const handleAddCard = () => {
           </div>
         </div>
       </div>
+      <footer className=" py-4 text-center flex gap-4 justify-center">
+      <button  onClick={() => navigate('/register')} className="bg-purple-600 text-white px-2 py-1 md:px-4 md:py-2 rounded-md hover:bg-purple-700 ">
+          Register
+        </button>
+        <button onClick={() => navigate('/login')} className="bg-purple-600 text-white px-2 py-1 md:px-4 md:py-2 rounded-md hover:bg-purple-700">
+          Login
+        </button>
+        <button onClick={() => navigate('/')} className="bg-purple-600 text-white px-2 py-1 md:px-4 md:py-2 rounded-md hover:bg-purple-700">
+          Home
+        </button>
+      </footer>
     </div>
   );
 };
