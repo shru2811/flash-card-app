@@ -19,7 +19,7 @@ const LandingPage = () => {
         </div>
       </header>
 
-      <main className="container mx-auto px-4">
+      <main className="container mx-auto md:px-4">
         <section className="flex gap-8 flex-col-reverse md:flex-row justify-between items-center py-16">
           <div className="w-1/2">
             <h1 className="md:text-4xl font-bold mb-4">
@@ -30,7 +30,7 @@ const LandingPage = () => {
             Create multi-definition flashcards for any topic and boost your learning potential.
             </p>
             <div className="space-x-4 flex flex-col sm:flex-row">
-              <button onClick={() => navigate('/demo')} className="bg-purple-600 text-white px-6 py-3 rounded-md hover:bg-purple-700 mb-3">
+              <button onClick={() => navigate('/demo')} className="bg-purple-600 text-white px-6 py-3 rounded-md hover:bg-purple-700 mb-3 sm:mb-0">
                 Get Started
               </button>
               <a href="#how-it-works" className="border border-purple-600 text-purple-600 px-6 py-3 rounded-md hover:bg-purple-600 hover:text-white text-center">
